@@ -2,6 +2,7 @@ import { lazy } from "react";
 
 const Home = lazy(() => import("./pages/Home"));
 const Layanan = lazy(() => import("./pages/Layanan"));
+const Humas = lazy(() => import("./pages/Layanan/Humas"));
 const Kontak = lazy(() => import("./pages/Kontak"));
 const Daftar = lazy(() => import("./pages/Daftar"));
 const Masuk = lazy(() => import("./pages/Masuk"));
@@ -19,6 +20,10 @@ const routes = [
   {
     path: "/layanan",
     component: Layanan,
+  },
+  {
+    path: "/layanan/humas",
+    component: Humas,
   },
   {
     path: "/kontak",
