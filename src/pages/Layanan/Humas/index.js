@@ -1,9 +1,14 @@
+import { img } from "../../../assets/images";
+
 const Humas = () => {
   return (
-    <div className="flex flex-col mt-16 px-7 py-10 text-center bg-gray">
-      <h1 className="text-2xl font-bold mb-10">Humas</h1>
-      <div className="flex flex-col md:flex-row">
-        <ul className="grid grid-cols-2 w-full md:w-1/2 gap-10 md:gap-3">
+    <div className="flex flex-col lg:flex-row mt-16 px-7 py-10 lg:py-20 text-center items-center bg-gray">
+      <div className="flex flex-col lg:flex-row items-center gap-5">
+        <img src={img.icHumas} alt="Humas" className="w-1/2" />
+        <h1 className="text-2xl font-bold mb-10 lg:mb-0">Humas</h1>
+      </div>
+      <div className="flex flex-col lg:flex-row w-full md:self-end lg:self-center lg:justify-end items-center gap-5">
+        <ul className="grid grid-cols-2 gap-10 md:gap-5">
           <li>
             <input
               type="checkbox"
@@ -15,7 +20,7 @@ const Humas = () => {
             />
             <label
               for="kata"
-              class="inline-flex items-center justify-between w-full p-3 text-gray-500 bg-gray-second  rounded-lg cursor-pointer peer-checked:bg-orange peer-checked:text-white hover:text-white hover:bg-orange ">
+              class="inline-flex items-center justify-between w-full p-3 lg:p-2 text-gray-500 bg-gray-second  rounded-lg cursor-pointer peer-checked:bg-orange peer-checked:text-white hover:text-white hover:bg-orange ">
               <div class="w-full text-lg font-semibold">Kata</div>
             </label>
           </li>
@@ -30,12 +35,12 @@ const Humas = () => {
             />
             <label
               for="kalimat"
-              class="inline-flex items-center justify-between w-full p-3 text-gray-500 bg-gray-second rounded-lg cursor-pointer peer-checked:bg-orange peer-checked:text-white hover:text-white hover:bg-orange ">
+              class="inline-flex items-center justify-between w-full p-3 lg:p-2 lg:px-10 text-gray-500 bg-gray-second rounded-lg cursor-pointer peer-checked:bg-orange peer-checked:text-white hover:text-white hover:bg-orange ">
               <div class="w-full text-lg font-semibold">Kalimat</div>
             </label>
           </li>
         </ul>
-        <div class="relative mt-5 md:mt-0 ml-5 w-1/2">
+        <div class="relative mt-5 lg:mt-0">
           <input
             type="search"
             class="bg-purple-white shadow rounded border-0 p-3 w-full focus:outline-none"
