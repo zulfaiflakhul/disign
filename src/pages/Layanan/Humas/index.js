@@ -2,7 +2,7 @@ import { img } from "../../../assets/images";
 
 const Humas = () => {
   return (
-    <div className="flex flex-col lg:flex-row mt-16 px-7 py-10 lg:py-20 text-center items-center bg-gray">
+    <div className="flex flex-col lg:flex-row mt-16 px-7 py-10 lg:py-20 text-center items-center bg-gray lg:px-20">
       <div className="flex flex-col lg:flex-row items-center gap-5">
         <img src={img.icHumas} alt="Humas" className="w-1/2" />
         <h1 className="text-2xl font-bold mb-10 lg:mb-0">Humas</h1>
