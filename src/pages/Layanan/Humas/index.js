@@ -3,6 +3,8 @@ import { img } from "../../../assets/images";
 import { useEffect, useState } from "react";
 
 const Humas = () => {
+  // Fetch Data filter by category
+
   const [post, setPost] = useState([]);
 
   useEffect(() => {
