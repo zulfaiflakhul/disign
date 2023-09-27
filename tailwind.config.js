@@ -10,6 +10,7 @@ export const theme = {
       "gray-second": "#D9D9D9",
       blue: "#0f2c59",
       orange: "#E25822",
+      "black-46": "#00000076",
     },
   },
 };

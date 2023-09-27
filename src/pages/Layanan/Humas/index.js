@@ -6,6 +6,7 @@ const Humas = () => {
   // Fetch Data filter by category
 
   const [post, setPost] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     axios.get("http://127.0.0.1:3000/api/kata").then((result) => {
@@ -13,19 +14,19 @@ const Humas = () => {
       const dictHumas = dictionary.filter(
         (dictionary) => dictionary.category.name === "Kata Sifat"
       );
-      setPost(dictHumas);
+      setPost(dictionary);
     });
   }, []);
 
   return (
     <div className="bg-gray">
-      <div className="flex flex-col lg:flex-row mt-16 px-7 py-10 lg:py-20 text-center items-center lg:px-20">
-        <div className="flex flex-col lg:flex-row items-center gap-5">
+      <div className="flex flex-col md:flex-row mt-16 px-7 py-10 lg:py-20 text-center items-center lg:px-20">
+        <div className="flex flex-col md:flex-row items-center gap-5">
           <img src={img.icHumas} alt="Humas" className="w-1/2" />
-          <h1 className="text-2xl font-bold mb-10 lg:mb-0">Humas</h1>
+          <h1 className="text-2xl font-bold mb-10 md:mb-0">Humas</h1>
         </div>
-        <div className="flex flex-col lg:flex-row w-full md:self-end lg:self-center lg:justify-end items-center gap-5">
-          <ul className="grid grid-cols-2 gap-10 md:gap-5">
+        <div className="flex flex-col md:flex-row w-full md:self-center md:justify-end items-center gap-5">
+          <ul className="grid grid-cols-2 gap-5">
             <li>
               <input
                 type="checkbox"
@@ -37,7 +38,7 @@ const Humas = () => {
               />
               <label
                 htmlFor="kata"
-                className="inline-flex items-center justify-between w-full p-3 lg:p-2 text-gray-500 bg-gray-second  rounded-lg cursor-pointer peer-checked:bg-orange peer-checked:text-white hover:text-white hover:bg-orange ">
+                className="inline-flex items-center justify-between w-full px-12 py-2 md:p-2 text-gray-500 bg-gray-second  rounded-lg cursor-pointer peer-checked:bg-orange peer-checked:text-white hover:text-white hover:bg-orange ">
                 <div className="w-full text-lg font-semibold">Kata</div>
               </label>
             </li>
@@ -52,16 +53,17 @@ const Humas = () => {
               />
               <label
                 htmlFor="kalimat"
-                className="inline-flex items-center justify-between w-full p-3 lg:p-2 lg:px-10 text-gray-500 bg-gray-second rounded-lg cursor-pointer peer-checked:bg-orange peer-checked:text-white hover:text-white hover:bg-orange ">
+                className="inline-flex items-center justify-between w-full px-12 py-2 md:px-5 md:py-2 lg:px-10 text-gray-500 bg-gray-second rounded-lg cursor-pointer peer-checked:bg-orange peer-checked:text-white hover:text-white hover:bg-orange ">
                 <div className="w-full text-lg font-semibold">Kalimat</div>
               </label>
             </li>
           </ul>
-          <div className="relative mt-5 lg:mt-0">
+          <div className="relative mt-5 md:mt-0 w-full md:w-auto">
             <input
               type="search"
               className="bg-purple-white shadow rounded border-0 p-3 w-full focus:outline-none"
               placeholder="Search"
+              onChange={(e) => setSearch(e.target.value)}
             />
             <div className="absolute text-purple-lighter bottom-3 right-3">
               <svg
@@ -82,18 +84,32 @@ const Humas = () => {
         </div>
       </div>
       <div>
-        <div className="grid grid-cols-4 gap-20 lg:px-20">
-          {post.map((data) => {
-            return (
-              <div key={data.id} className="text-center">
-                <video controls width="100%">
-                  <source src={data.images[0].url} type="video/mp4" />
-                  Sorry, your browser doesn't support embedded videos.
-                </video>
-                <h4>{data.name}</h4>
-              </div>
-            );
-          })}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 px-7 lg:px-20 pb-20">
+          {post
+            .filter((post) => {
+              if (search === "") {
+                return post;
+              } else if (
+                post.name.toLowerCase().includes(search.toLowerCase())
+              ) {
+                return post;
+              }
+            })
+            .map((data) => {
+              return (
+                <div key={data.id} className="text-center">
+                  <video controls width="100%">
+                    <source src={data.images[0].url} type="video/mp4" />
+                    Sorry, your browser doesn't support embedded videos.
+                  </video>
+                  <div className="bg-black-46 py-3 rounded-b-md">
+                    <h4 className="text-xl font-bold text-white">
+                      {data.name}
+                    </h4>
+                  </div>
+                </div>
+              );
+            })}
         </div>
       </div>
     </div>
