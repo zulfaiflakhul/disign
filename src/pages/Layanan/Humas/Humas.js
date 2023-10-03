@@ -2,9 +2,8 @@ import axios from "axios";
 import { img } from "../../../assets/images";
 import { useEffect, useState } from "react";
 
-const Humas = () => {
+export const Humas = () => {
   // Fetch Data filter by category
-
   const [post, setPost] = useState([]);
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState(() => Array(10).fill(false));
@@ -13,9 +12,9 @@ const Humas = () => {
     axios.get("http://127.0.0.1:3000/api/kata").then((result) => {
       const dictionary = result.data;
       const dictHumas = dictionary.filter(
-        (dictionary) => dictionary.service.name === "Humas"
+        (dictionary) => dictionary.category.name === "Kata Sifat"
       );
-      setPost(dictHumas);
+      setPost(dictionary);
     });
   }, []);
 
@@ -36,6 +35,7 @@ const Humas = () => {
                 value="kata"
                 className="hidden peer"
                 required
+                onChange={(e) => setSelected(e.target.value)}
               />
               <label
                 htmlFor="kata"
@@ -84,31 +84,40 @@ const Humas = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 px-7 lg:px-20 pb-20">
-        {post
-          .filter((post) => {
-            if (search === "") {
-              return post;
-            } else if (post.name.toLowerCase().includes(search.toLowerCase())) {
-              return post;
-            }
-          })
-          .map((post) => {
-            return (
-              <div key={post.id} className="text-center">
-                <video controls width="100%">
-                  <source src={post.videos[0].url} type="video/mp4" />
-                  Sorry, your browser doesn't support embedded videos.
-                </video>
-                <div className="bg-black-46 py-3 rounded-b-md">
-                  <h4 className="text-xl font-bold text-white">{post.name}</h4>
+      <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 px-7 lg:px-20 pb-20">
+          {post
+            .filter((post) => {
+              if (selected == "kata") {
+                return post.category.name === "Kata Benda";
+              }
+            })
+            .filter((post) => {
+              if (search === "") {
+                return post;
+              } else if (
+                post.name.toLowerCase().includes(search.toLowerCase())
+              ) {
+                return post;
+              }
+            })
+            .map((data) => {
+              return (
+                <div key={data.id} className="text-center">
+                  <video controls width="100%">
+                    <source src={data.images[0].url} type="video/mp4" />
+                    Sorry, your browser doesn't support embedded videos.
+                  </video>
+                  <div className="bg-black-46 py-3 rounded-b-md">
+                    <h4 className="text-xl font-bold text-white">
+                      {data.name}
+                    </h4>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+        </div>
       </div>
     </div>
   );
 };
-
-export default Humas;
