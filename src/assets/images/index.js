@@ -7,6 +7,7 @@ import icKesehatan from "./kesehatan.svg";
 import icKopma from "./kopma.svg";
 import icHsc from "./hsc.svg";
 import logoSeeListen from "./logo-seelisten.svg";
+import logoUny from "./logo-uny.svg";
 
 const img = {
   imgHero,
@@ -18,6 +19,7 @@ const img = {
   icKopma,
   icHsc,
   logoSeeListen,
+  logoUny,
 };
 
 export { img };

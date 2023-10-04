@@ -1,21 +1,22 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { img } from "../assets/images";
 
 const Navbar = () => {
   let Links = [
     { name: "Beranda", link: "/" },
     { name: "Layanan", link: "/layanan" },
     { name: "Kontak", link: "/kontak" },
-    { name: "Daftar", link: "/daftar" },
-    { name: "Masuk", link: "/masuk" },
   ];
 
   let [open, setOpen] = useState(false);
 
   return (
     <div className="shadow-md w-screen fixed top-0 left-0">
-      <div className="md:flex items-center md:justify-between bg-white py-8 lg:px-20 px-7">
-        <div className="font-bold text-2xl cursor-pointer flex items-center text-black"></div>
+      <div className="md:flex items-center md:justify-between bg-white py-5 lg:px-20 px-7">
+        <div className="font-bold text-2xl cursor-pointer flex items-center text-black">
+          <img src={img.logoUny} alt="logo uny" className="w-1/2 md:w-4/5" />
+        </div>
 
         <div
           onClick={() => setOpen(!open)}

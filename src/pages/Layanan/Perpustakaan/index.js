@@ -2,19 +2,19 @@ import axios from "axios";
 import { img } from "../../../assets/images";
 import { useEffect, useState } from "react";
 
-export const Humas = () => {
+const Perpustakaan = () => {
   // Fetch Data filter by category
+
   const [post, setPost] = useState([]);
   const [search, setSearch] = useState("");
-  const [selected, setSelected] = useState(() => Array(10).fill(false));
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:3000/api/kata").then((result) => {
+    axios.get("http://103.181.182.174/api/kata").then((result) => {
       const dictionary = result.data;
-      const dictHumas = dictionary.filter(
-        (dictionary) => dictionary.category.name === "Kata Sifat"
+      const dictPerpus = dictionary.filter(
+        (dictionary) => dictionary.service.name === "Perpustakaan"
       );
-      setPost(dictionary);
+      setPost(dictPerpus);
     });
   }, []);
 
@@ -22,8 +22,8 @@ export const Humas = () => {
     <div className="bg-gray">
       <div className="flex flex-col md:flex-row mt-16 px-7 py-10 lg:py-20 text-center items-center lg:px-20">
         <div className="flex flex-col md:flex-row items-center gap-5">
-          <img src={img.icHumas} alt="Humas" className="w-1/2" />
-          <h1 className="text-2xl font-bold mb-10 md:mb-0">Humas</h1>
+          <img src={img.icPerpustakaan} alt="Humas" className="w-1/2" />
+          <h1 className="text-2xl font-bold mb-10 md:mb-0">Perpustakaan</h1>
         </div>
         <div className="flex flex-col md:flex-row w-full md:self-center md:justify-end items-center gap-5">
           <ul className="grid grid-cols-2 gap-5">
@@ -35,7 +35,6 @@ export const Humas = () => {
                 value="kata"
                 className="hidden peer"
                 required
-                onChange={(e) => setSelected(e.target.value)}
               />
               <label
                 htmlFor="kata"
@@ -84,40 +83,31 @@ export const Humas = () => {
           </div>
         </div>
       </div>
-      <div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 px-7 lg:px-20 pb-20">
-          {post
-            .filter((post) => {
-              if (selected == "kata") {
-                return post.category.name === "Kata Benda";
-              }
-            })
-            .filter((post) => {
-              if (search === "") {
-                return post;
-              } else if (
-                post.name.toLowerCase().includes(search.toLowerCase())
-              ) {
-                return post;
-              }
-            })
-            .map((data) => {
-              return (
-                <div key={data.id} className="text-center">
-                  <video controls width="100%">
-                    <source src={data.images[0].url} type="video/mp4" />
-                    Sorry, your browser doesn't support embedded videos.
-                  </video>
-                  <div className="bg-black-46 py-3 rounded-b-md">
-                    <h4 className="text-xl font-bold text-white">
-                      {data.name}
-                    </h4>
-                  </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 px-7 lg:px-20 pb-20">
+        {post
+          .filter((post) => {
+            if (search === "") {
+              return post;
+            } else if (post.name.toLowerCase().includes(search.toLowerCase())) {
+              return post;
+            }
+          })
+          .map((post) => {
+            return (
+              <div key={post.id} className="text-center">
+                <video controls width="100%">
+                  <source src={post.videos[0].url} type="video/mp4" />
+                  Sorry, your browser doesn't support embedded videos.
+                </video>
+                <div className="bg-black-46 py-3 rounded-b-md">
+                  <h4 className="text-xl font-bold text-white">{post.name}</h4>
                 </div>
-              );
-            })}
-        </div>
+              </div>
+            );
+          })}
       </div>
     </div>
   );
 };
+
+export default Perpustakaan;

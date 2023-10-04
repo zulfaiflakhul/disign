@@ -3,9 +3,12 @@ import { lazy } from "react";
 const Home = lazy(() => import("./pages/Home"));
 const Layanan = lazy(() => import("./pages/Layanan"));
 const Humas = lazy(() => import("./pages/Layanan/Humas"));
+const Perpustakaan = lazy(() => import("./pages/Layanan/Perpustakaan"));
+const Keamanan = lazy(() => import("./pages/Layanan/Keamanan"));
+const Kesehatan = lazy(() => import("./pages/Layanan/Kesehatan"));
+const Kopma = lazy(() => import("./pages/Layanan/Kopma"));
+const HSC = lazy(() => import("./pages/Layanan/HSC"));
 const Kontak = lazy(() => import("./pages/Kontak"));
-const Daftar = lazy(() => import("./pages/Daftar"));
-const Masuk = lazy(() => import("./pages/Masuk"));
 
 const routes = [
   // if not found redirect to homepage or another page
@@ -26,16 +29,28 @@ const routes = [
     component: Humas,
   },
   {
+    path: "/layanan/perpustakaan",
+    component: Perpustakaan,
+  },
+  {
+    path: "/layanan/keamanan",
+    component: Keamanan,
+  },
+  {
+    path: "/layanan/kesehatan",
+    component: Kesehatan,
+  },
+  {
+    path: "/layanan/kopma",
+    component: Kopma,
+  },
+  {
+    path: "/layanan/HSC",
+    component: HSC,
+  },
+  {
     path: "/kontak",
     component: Kontak,
-  },
-  {
-    path: "/daftar",
-    component: Daftar,
-  },
-  {
-    path: "/masuk",
-    component: Masuk,
   },
 ];
 

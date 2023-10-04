@@ -12,7 +12,7 @@ const Humas = () => {
     axios.get("http://103.181.182.174/api/kata").then((result) => {
       const dictionary = result.data;
       const dictHumas = dictionary.filter(
-        (dictionary) => dictionary.service.name === "Humas"
+        (dictionary) => dictionary.service.name === "Kesehatan"
       );
       setPost(dictHumas);
     });
@@ -22,8 +22,8 @@ const Humas = () => {
     <div className="bg-gray">
       <div className="flex flex-col md:flex-row mt-16 px-7 py-10 lg:py-20 text-center items-center lg:px-20">
         <div className="flex flex-col md:flex-row items-center gap-5">
-          <img src={img.icHumas} alt="Humas" className="w-1/2" />
-          <h1 className="text-2xl font-bold mb-10 md:mb-0">Humas</h1>
+          <img src={img.icKesehatan} alt="Humas" className="w-1/2" />
+          <h1 className="text-2xl font-bold mb-10 md:mb-0">Kesehatan</h1>
         </div>
         <div className="flex flex-col md:flex-row w-full md:self-center md:justify-end items-center gap-5">
           <ul className="grid grid-cols-2 gap-5">
