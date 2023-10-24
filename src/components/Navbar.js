@@ -13,14 +13,14 @@ const Navbar = () => {
 
   return (
     <div className="shadow-md w-screen fixed top-0 left-0">
-      <div className="md:flex items-center md:justify-between bg-white py-5 lg:px-20 px-7">
+      <div className="md:flex items-center md:justify-between bg-white py-5 lg:px-20 px-5">
         <div className="font-bold text-2xl cursor-pointer flex items-center text-black">
           <img src={img.logoUny} alt="logo uny" className="w-1/2 md:w-4/5" />
         </div>
 
         <div
           onClick={() => setOpen(!open)}
-          className="text-3xl absolute right-8 top-5 cursor-pointer lg:hidden">
+          className="text-3xl absolute right-4 top-6 cursor-pointer lg:hidden">
           <ion-icon name={open ? "close" : "menu"}></ion-icon>
         </div>
 
