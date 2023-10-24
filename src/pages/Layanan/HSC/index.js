@@ -1,10 +1,11 @@
 import axios from "axios";
 import { img } from "../../../assets/images";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const Humas = () => {
   // Fetch Data filter by category
-
+  const location = useLocation();
   const [post, setPost] = useState([]);
   const [search, setSearch] = useState("");
 
@@ -15,8 +16,12 @@ const Humas = () => {
         (dictionary) => dictionary.service.name === "HSC"
       );
       setPost(dictHumas);
+
+      if (!location.hash) {
+        window.scrollTo(0, 0);
+      }
     });
-  }, []);
+  }, [location]);
 
   return (
     <div className="bg-gray">
@@ -85,6 +90,7 @@ const Humas = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 px-7 lg:px-20 pb-20">
         {post
+          //eslint-disable-next-line
           .filter((post) => {
             if (search === "") {
               return post;

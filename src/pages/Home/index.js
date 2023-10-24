@@ -1,10 +1,17 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { img } from "../../assets/images";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const Home = () => {
   const ref = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!location.hash) {
+      window.scrollTo(0, 0);
+    }
+  }, [location]);
 
   const handleClick = () => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
