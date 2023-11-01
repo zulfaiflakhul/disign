@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { img } from "../assets/images";
 
 const Navbar = () => {
@@ -12,10 +12,12 @@ const Navbar = () => {
   let [open, setOpen] = useState(false);
 
   return (
-    <div className="shadow-md w-screen fixed top-0 left-0">
+    <div className="shadow-md w-screen fixed top-0 left-0 z-10">
       <div className="md:flex items-center md:justify-between bg-white py-5 lg:px-20 px-5">
         <div className="font-bold text-2xl cursor-pointer flex items-center text-black">
-          <img src={img.logoUny} alt="logo uny" className="w-1/2 md:w-4/5" />
+          <Link to="/">
+            <img src={img.logoUny} alt="logo uny" className="w-1/2 md:w-4/5" />
+          </Link>
         </div>
 
         <div
@@ -31,7 +33,9 @@ const Navbar = () => {
           {Links.map((link) => (
             <li key={link.name} className="lg:ml-8 text-lg lg:my-0 my-7">
               <NavLink to={link.link}>
-                <div className="text-black hover:font-bold duration-100">
+                <div
+                  onClick={() => setOpen(!open)}
+                  className="text-black hover:font-bold duration-100">
                   {link.name}
                 </div>
               </NavLink>
